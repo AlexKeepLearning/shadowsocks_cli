@@ -1,0 +1,35 @@
+#!/bin/sh
+
+server="127.0.0.1"
+serverort="12255"
+localport="7777"
+password="123456"
+method="aes-128-cfb"
+timeout="600"
+
+if server=$(snapctl get server); then
+    echo "server is:$server"
+fi
+
+if serverport=$(snapctl get serverport); then
+    echo "serverport is: $serverport"
+fi
+
+if localport=$(snapctl get localport); then
+    echo "localport is: $localport"
+fi
+
+if password=$(snapctl get password); then
+    echo "password is: $password"
+fi
+
+if method=$(snapctl get method); then
+    echo "method is: $method"
+fi
+
+if timeout=$(snapctl get timeout); then
+    echo "timeout is: $timeout"
+fi
+
+#now, lets create the file into a JSON file
+printf '{"server":"%s","server_port":%s,"local_port":%s, "password":"%s", "method":"%s", "timeout":%s}\n' "$server" "$serverport" "$localport" "$password" "$method" "$timeout" > $SNAP_DATA/config.json
