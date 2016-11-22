@@ -11,6 +11,9 @@ apps:
   ssocks: 
     command: bin/wrapper
     plugs: [network,home]
+  cli: 
+    command: bin/shadowsocks-local
+    plugs: [network,home]
 
 parts:
   ss:
